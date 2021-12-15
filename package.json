@@ -1,39 +1,41 @@
 {
-  "name": "my-plugin",
-  "version": "0.0.0",
-  "description": "My plugin for release-it",
-  "main": "index.js",
-  "scripts": {
-    "test": "bron test.js",
-    "release": "release-it"
-  },
+  "name": "release-it-snapshot-prerelease-version",
+  "version": "1.0.0-dev",
+  "description": "Snapshot pre-release version write plugin for release-it",
   "keywords": [
     "release",
     "release-it",
-    "release-it-plugin"
+    "release-it-plugin",
+    "snapshot",
+    "prerelease",
+    "version",
+    "bump",
+    "increment"
   ],
+  "bugs": "https://github.com/ns0m/release-it-snapshot-prerelease-version/issues",
+  "repository": "github:ns0m/release-it-snapshot-prerelease-version",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/my/awesome-plugin.git"
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "coverage": "c8 npm test",
+    "test": "bron --serial test.js"
   },
-  "homepage": "https://github.com/my/awesome-plugin#readme",
-  "bugs": "https://github.com/my/awesome-plugin/issues",
-  "author": "",
-  "peerDependencies": {
-    "release-it": "^14.10.0"
+  "dependencies": {
+    "semver": "^7.3.5"
   },
   "devDependencies": {
     "bron": "^1.1.1",
-    "release-it": "^14.10.0",
+    "c8": "^7.10.0",
+    "release-it": "^14.8.0",
     "sinon": "^11.1.1"
+  },
+  "peerDependencies": {
+    "release-it": "^14.8.0"
   },
   "engines": {
     "node": ">=10"
-  },
-  "release-it": {
-    "hooks": {
-      "before:init": "npm test"
-    }
   }
 }

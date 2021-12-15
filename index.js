@@ -1,5 +1,5 @@
 const { Plugin } = require('release-it');
 
-class MyPlugin extends Plugin {}
+class SnapshotPreReleaseVersionPlugin extends Plugin {}
 
-module.exports = MyPlugin;
+module.exports = SnapshotPreReleaseVersionPlugin;
