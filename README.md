@@ -14,6 +14,6 @@ In [release-it](https://github.com/release-it/release-it) config:
 
 ```
 "plugins": {
-  "release-it-snapshot-prerelease-version": true
+  "release-it-snapshot-prerelease-version": {}
 }
 ```
