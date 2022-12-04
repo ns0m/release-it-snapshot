@@ -1,9 +1,9 @@
-import test from 'bron';
 import assert from 'assert/strict';
-import sinon from 'sinon';
-import { factory } from 'release-it/test/util/index.js';
-import SnapshotPreReleaseVersionPlugin from './index.js';
+import test from 'bron';
 import Version from 'release-it/customExport_lib-plugin-version-Version.js';
+import { factory } from 'release-it/test/util/index.js';
+import sinon from 'sinon';
+import SnapshotPreReleaseVersionPlugin from './index.js';
 
 test('isEnabled true', () => {
   assert.equal(SnapshotPreReleaseVersionPlugin.isEnabled(), true);
