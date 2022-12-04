@@ -1,6 +1,6 @@
 {
   "name": "release-it-snapshot-prerelease-version",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Snapshot pre-release version write plugin for release-it",
   "keywords": [
     "release",
