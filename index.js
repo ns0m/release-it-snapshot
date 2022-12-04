@@ -1,5 +1,5 @@
-const VersionPlugin = require('release-it/lib/plugin/version/Version');
-const semver = require('semver');
+import VersionPlugin from 'release-it/lib/plugin/version/Version.js';
+import semver from 'semver';
 
 class SnapshotPreReleaseVersionPlugin extends VersionPlugin {
   static isEnabled(options) {
@@ -22,4 +22,4 @@ class SnapshotPreReleaseVersionPlugin extends VersionPlugin {
   }
 }
 
-module.exports = SnapshotPreReleaseVersionPlugin;
+export default SnapshotPreReleaseVersionPlugin;

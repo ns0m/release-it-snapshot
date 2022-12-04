@@ -1,42 +1,43 @@
-const test = require('bron');
-const assert = require('assert').strict;
-const sinon = require('sinon');
-const { factory } = require('release-it/test/util');
-const Plugin = require('.');
-const VersionPlugin = require('release-it/lib/plugin/version/Version');
+import test from 'bron';
+import assert from 'assert/strict';
+import sinon from 'sinon';
+import { factory } from 'release-it/test/util/index.js';
+import SnapshotPreReleaseVersionPlugin from './index.js';
+import Version from 'release-it/lib/plugin/version/Version.js';
 
 test('isEnabled true', () => {
-  assert.equal(Plugin.isEnabled(), true);
+  assert.equal(SnapshotPreReleaseVersionPlugin.isEnabled(), true);
 });
 
 test('isEnabled false if options=false', () => {
-  assert.equal(Plugin.isEnabled(false), false);
+  assert.equal(SnapshotPreReleaseVersionPlugin.isEnabled(false), false);
 });
 
-const superIncrementVersionStubReturns = (value) => {
-  if (!this.superIncrementVersionStub) {
-    this.superIncrementVersionStub = sinon.stub(VersionPlugin.prototype, 'incrementVersion');
-    this.superIncrementVersionStubCallCount = 0;
+const superIncrementVersionStubReturns = (plugin, value) => {
+  if (!plugin.superIncrementVersionStub) {
+    sinon.restore();
+    plugin.superIncrementVersionStub = sinon.stub(Version.prototype, 'incrementVersion');
+    plugin.superIncrementVersionStubCallCount = 0;
   }
-  this.superIncrementVersionStub.onCall(this.superIncrementVersionStubCallCount++).returns(value);
+  plugin.superIncrementVersionStub.onCall(plugin.superIncrementVersionStubCallCount++).returns(value);
 };
 
 test('incrementVersion null', () => {
-  const plugin = factory(Plugin);
-  superIncrementVersionStubReturns(undefined);
+  const plugin = factory(SnapshotPreReleaseVersionPlugin);
+  superIncrementVersionStubReturns(plugin, undefined);
   assert.equal(plugin.incrementVersion(), null);
-  superIncrementVersionStubReturns('1.2.4');
+  superIncrementVersionStubReturns(plugin, '1.2.4');
   assert.equal(plugin.incrementVersion(), null);
-  superIncrementVersionStubReturns('1.2.4-beta');
+  superIncrementVersionStubReturns(plugin, '1.2.4-beta');
   assert.equal(plugin.incrementVersion(), null);
-  superIncrementVersionStubReturns('1.2.4-alpha.beta-0');
+  superIncrementVersionStubReturns(plugin, '1.2.4-alpha.beta-0');
   assert.equal(plugin.incrementVersion(), null);
 });
 
 test('incrementVersion snapshot', () => {
-  const plugin = factory(Plugin);
-  superIncrementVersionStubReturns('1.2.4-0');
+  const plugin = factory(SnapshotPreReleaseVersionPlugin);
+  superIncrementVersionStubReturns(plugin, '1.2.4-0');
   assert.equal(plugin.incrementVersion(), '1.2.4-SNAPSHOT');
-  superIncrementVersionStubReturns('1.2.4-beta.0');
+  superIncrementVersionStubReturns(plugin, '1.2.4-beta.0');
   assert.equal(plugin.incrementVersion(), '1.2.4-beta');
 });
