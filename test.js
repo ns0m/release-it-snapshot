@@ -3,7 +3,7 @@ import assert from 'assert/strict';
 import sinon from 'sinon';
 import { factory } from 'release-it/test/util/index.js';
 import SnapshotPreReleaseVersionPlugin from './index.js';
-import Version from 'release-it/lib/plugin/version/Version.js';
+import Version from 'release-it/customExport_lib-plugin-version-Version.js';
 
 test('isEnabled true', () => {
   assert.equal(SnapshotPreReleaseVersionPlugin.isEnabled(), true);

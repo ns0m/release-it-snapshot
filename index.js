@@ -1,4 +1,4 @@
-import VersionPlugin from 'release-it/lib/plugin/version/Version.js';
+import VersionPlugin from 'release-it/customExport_lib-plugin-version-Version.js';
 import semver from 'semver';
 
 class SnapshotPreReleaseVersionPlugin extends VersionPlugin {

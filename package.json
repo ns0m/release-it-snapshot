@@ -21,10 +21,12 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "customize-releaseit.js"
   ],
   "scripts": {
     "coverage": "c8 npm test",
+    "postinstall": "node customize-releaseit.js",
     "test": "bron --serial test.js"
   },
   "dependencies": {
