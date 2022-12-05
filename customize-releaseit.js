@@ -18,7 +18,7 @@ if (!fs.existsSync(manifestPath)) {
 }
 const content = fs.readFileSync(manifestPath, 'utf8');
 if (!content.includes(CUSTOM_EXPORT)) {
-  const newContent = content.replace(new RegExp(`${PACKAGE_EXPORTS_START}\n`), `$&    ${CUSTOM_EXPORT},\n`);
+  const newContent = content.replace(new RegExp(`${PACKAGE_EXPORTS_START}(\r?\n?)([\t ]+)`), `$&${CUSTOM_EXPORT},$1$2`);
   fs.writeFileSync(manifestPath, newContent, 'utf8');
   console.log(' • export added');
 } else {
